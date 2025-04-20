@@ -1,9 +1,9 @@
-package DAY03_T;
+package DAY07;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class xot5 {
+public class taehyun_fish {
     public static void main(String[] args) {
 
         //1. 호수크기 받기
