@@ -76,12 +76,12 @@ or
         int choice = first(); // 이렇게 나오면 first에 있는 코드들이 실행되고 값이 choice에 저장됨.
 
         if (choice==1) {// 조건 확인  옳바른 입력 1번 선택시
-            int num [] =input(sc);
+            int [] num  =input(sc);
             System.out.println("사각형 넓이 : "+rect(num[0],num[1]));//사각형 넓이 구하는 메소드
 
         }
         else if (choice==2) {// 2번선택
-            int num [] =input(sc);
+            int [] num  =input(sc);
             tri(num[0],num[1]); //삼각형 메소드
 
         }

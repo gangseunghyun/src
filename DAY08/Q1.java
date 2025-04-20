@@ -32,31 +32,27 @@ public class Q1 {
         int [] score = new int[3];
         System.out.print("국어 점수 : ");
         score [0] = sc.nextInt();
-        wrongCheck(score[0]);
+        wrongCheck(score);
         System.out.print("영어 점수 : ");
         score [1] = sc.nextInt();
-        wrongCheck(score[1]);
+        wrongCheck(score);
         System.out.print("수학 점수 : ");
         score [2] = sc.nextInt();
-        wrongCheck(score[2]);
+        wrongCheck(score);
 
         return score;
 
     }
 
     // 잘못된 입력 확인 메인문 안의 값을 받아서 코드만 실행 안주고 받고
-    static void wrongCheck (int score){
+    static void wrongCheck (int [] score) {
         //올바른입력
-        if (score<=100&&score>0){
-
-        } else wrongprint();
-
-
-
+        for (int i = 0; i < score.length; i++) {
+            if (score[i] > 100) {
+                wrongprint();
+            }
+        }
     }
-
-
-
 
     // 잘못된 입력입니다 출력
     static void wrongprint (){
@@ -68,8 +64,8 @@ public class Q1 {
 
     // 메인문에서 값을 주면 메소드 안에 매개 변수가 받아서 나한테 리턴 값을 줌.
     // 평균구하기
-    static int avg (int[] avgscore){
-        return (avgscore[0]+ avgscore[1]+avgscore[2])/3;
+    static int avg (int[] score){
+        return (score[0]+ score[1]+score[2])/3;
     }
 
 
