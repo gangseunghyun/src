@@ -22,14 +22,14 @@ public class Q3_Review {
         Random r = new Random();
 
 
-        int fish = 3; // 호수에 물고기 배치
-        while (fish > 0) {
+        int fish = 0; // 호수에 물고기 배치
+        while (fish <3) {
             int ran1 = r.nextInt(5);
             int ran2 = r.nextInt(5);
 
             if (lake[ran1][ran2] == 0) {
                 lake[ran1][ran2] = 1;
-                fish--;
+                fish++;
             }
         }
 
@@ -57,56 +57,80 @@ public class Q3_Review {
             } else break;
         }
 
-        if (lake[input1][input2] == 0) {
-            lake[input1][input2] = 2;  // 2는 캐스팅 자리
-        } else {
+        if (lake[input1][input2]==1){
             System.out.println("물고기를 잡았습니다.");
             lake[input1][input2] = 2;
+            fish--;
         }
 
-        while (true) {
-
-            for (int i = 0; i < lake.length; i++) {
-                for (int j = 0; j < lake[i].length; j++) {
-                    if (lake[i][j] == 0) {
-                        System.out.print("○"); //0은 빈자리
-                    } else if (lake[i][j] == 2) {
-                        System.out.print("X");
-
-                    } else System.out.print("●");  // 1은 물고기자리
+        for (int i = 0;i< lake.length;i++){
+            for (int j = 0;j<lake[i].length;j++){
+                if (i == input1 && j == input2){
+                    System.out.print("X");
+                } else if (lake[i][j] == 0) {
+                    System.out.print("○");
                 }
-                System.out.println();
+                else System.out.print("●");
             }
+            System.out.println();
+        }
+
+        while (fish>0) {
+
 
             System.out.println("1.위 2.아래 3.왼쪽 4.오른쪽");
             int input3 = sc.nextInt();
             //위로
 
             //for문으로 sw를 만들어서 1,-1으로 해보쟈 input을 바깥 for문으로
+
             if (input3 == 1) {
-                if (lake[input1 - 1][input2] == 0) { // 비어있을때
-                    lake[input1][input2] = 0;
-                    lake[input1 - 1][input2] = 2;
-                } else {
-                    lake[input1 - 1][input2] = 2; //물고기가 있을때
-                    lake[input1][input2] = 0;
-                    System.out.println("물고기를 잡았습니다.");//막히는 경우도 써야함
+                input1--;
+                if (input1 < 0){
+                    System.out.println("더 이상 위로 움직일 수 없습니다.");
+                    input1++;
                 }
             }
             else if (input3 == 2) {
-                if (lake[input1+1][input2] == 0){
-                    lake[input1][input2] = 0;
-                    lake[input1+1][input2] = 2;
+                input1++;
+                if (input1 > 4) {
+                    System.out.println("더 이상 아래로 움직일 수 없습니다.");
+                    input1--;
                 }
-                else {
-                    lake[input1+1][input2] = 2;
-                    lake[input1][input2] = 0;
-                    System.out.println("물고기를 잡았습니다.");
-                }
-
-
+            } else if (input3 == 3) {
+                input2--;
+                if (input2 < 0) {
+                    System.out.println("더 이상 왼쪽으로 움직일 수 없습니다.");
+                    input2++;
                 }
             }
-        }
-    }
+            else if (input3 == 4){
+                input2++;
+                if (input2 > 4) {
+                    System.out.println("더 이상 오른쪽으로 움직일 수 없습니다.");
+                    input2--;
+                }
+            }
+            else System.out.println("잘못된 입력입니다.");
 
+            if (lake[input1][input2]==1) {
+                System.out.println("물고기를 잡았습니다.");
+                lake[input1][input2] = 0;
+                fish--;
+            }
+            for (int i = 0;i< lake.length;i++){
+                for (int j = 0;j<lake[i].length;j++){
+                    if (i == input1 && j ==input2){
+                        System.out.print("X");
+                    } else if (lake[i][j] == 0) {
+                        System.out.print("○");
+                    }
+                    else System.out.print("●");
+                }System.out.println();
+            }
+
+
+        }
+        System.out.println("물고기를 다 잡았다!!");
+    }
+}
